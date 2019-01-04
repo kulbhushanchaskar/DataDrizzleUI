@@ -14,13 +14,6 @@ export class MutualFundComponent implements OnInit {
 
   public response: IResponse;
   public layout: any;
-  public graph = {
-    data: [
-        { x: [1, 2, 3], y: [2, 6, 3], type: 'scatter', mode: 'lines+points', marker: {color: 'red'} },
-        { x: [1, 2, 3], y: [2, 5, 3], type: 'bar' },
-    ],
-    layout: {width: 320, height: 240, title: 'A Fancy Plot'}
-  };
 
   constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef) { }
 

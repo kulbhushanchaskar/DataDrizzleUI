@@ -16,13 +16,15 @@ import { AppComponent } from './app.component';
 import { CreateConnectionComponent } from './create-connection/create-connection.component';
 import { StockAndIndexPriceComponent } from './stock-and-index-price/stock-and-index-price.component';
 import { MutualFundComponent } from './mutual-fund/mutual-fund.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateConnectionComponent,
     StockAndIndexPriceComponent,
-    MutualFundComponent
+    MutualFundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
