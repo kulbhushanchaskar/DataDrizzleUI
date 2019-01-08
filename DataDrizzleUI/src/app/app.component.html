@@ -1,0 +1,66 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <a class="navbar-brand">
+            <img src="assets/img/ngx-bootstrap.svg" class="logo">
+          </a>
+          <span class="navbar-brand">Angular + Bootstrap</span>
+      </div>
+      <ul class="nav navbar-nav">
+          <li class="active"><a href="#">
+            Link <span class="sr-only">(current)</span>
+          </a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown" dropdown> <!-- {1} -->
+              <a dropdownToggle role="button"> <!-- {2} -->
+                Dropdown <span class="caret"></span></a>
+              <ul *dropdownMenu class="dropdown-menu"> <!-- {3} -->
+                  <li><a routerLink = "create-connection">Create Connection</a></li>
+                  <li><a routerLink="stock-and-index-price">Stock and Index Price</a></li>
+                  <li><a routerLink="mutual-fund">Mutual fund</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">One more separated link</a></li>
+              </ul>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+      <button type="button" id="sidebarCollapse" (click)="toggleNavbar()" class="navbar-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation" *ngIf="!navbarOpen">
+        <i class="fa fa-align-justify"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Page</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div>
+    <router-outlet></router-outlet>
+</div>
