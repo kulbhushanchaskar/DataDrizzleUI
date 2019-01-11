@@ -28,39 +28,42 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+<div id="wrapper"  [ngClass]="ref.click === true? 'toggled' :''" >
+  <div class="overlay" [ngStyle]="{disply:ref.click === true? 'block' :'none'}" ></div>
 
-      <button type="button" id="sidebarCollapse" (click)="toggleNavbar()" class="navbar-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation" *ngIf="!navbarOpen">
-        <i class="fa fa-align-justify"></i>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="nav navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Page</a>
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+      <ul class="nav sidebar-nav">
+          <li class="sidebar-brand">
+              <a>
+                 Data Drizzle
+              </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Page</a>
+          <li>
+              <a>
+                <input type="checkbox" name="n" value="v"> abc </input>
+              </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Page</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Page</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+      </ul>
   </nav>
+  <!-- /#sidebar-wrapper -->
 
-<div>
-    <router-outlet></router-outlet>
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+      <button appSidebar  #ref="appSidebar" type="button" class="hamburger is-closed" data-toggle="offcanvas">
+          <span class="hamb-top"></span>
+    <span class="hamb-middle"></span>
+  <span class="hamb-bottom"></span>
+      </button>
+      <div class="container">
+          <div class="row">
+            <div>
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+      </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
 </div>
+

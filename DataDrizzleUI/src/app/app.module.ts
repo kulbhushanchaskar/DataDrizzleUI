@@ -17,6 +17,7 @@ import { CreateConnectionComponent } from './create-connection/create-connection
 import { StockAndIndexPriceComponent } from './stock-and-index-price/stock-and-index-price.component';
 import { MutualFundComponent } from './mutual-fund/mutual-fund.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarDirective } from './sidebar.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     CreateConnectionComponent,
     StockAndIndexPriceComponent,
     MutualFundComponent,
-    NavbarComponent
+    NavbarComponent,
+    SidebarDirective
   ],
   imports: [
     BrowserModule,
