@@ -40,9 +40,18 @@
               </a>
           </li>
           <li>
-              <a>
-                <input type="checkbox" name="n" value="v"> abc </input>
-              </a>
+            <form class="form-horizontal" #mutualfundForm = "ngForm" (ngSubmit) = "createConnetion(mutualfundForm.value)">
+                <div style="padding-left: 5%">
+                    <div>
+                        <input type="checkbox" id="mfund1" name="mfund1" [(ngModel)]="mutualfundForm.mfund1">
+                        &nbsp; <label class="control-label " for="mfund1">Mutual Fund 1</label> 
+                    </div>
+                    <div>
+                        <input id="Checkbox1" name="Checkbox1" type="checkbox" value="Admin" />
+                        &nbsp; <label for="Checkbox1">AdminUser</label>
+                    </div>
+                </div>
+            </form>
           </li>
       </ul>
   </nav>
