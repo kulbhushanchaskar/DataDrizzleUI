@@ -40,18 +40,16 @@
               </a>
           </li>
           <li>
-            <form class="form-horizontal" #mutualfundForm = "ngForm" (ngSubmit) = "createConnetion(mutualfundForm.value)">
-                <div style="padding-left: 5%">
-                    <div>
-                        <input type="checkbox" id="mfund1" name="mfund1" [(ngModel)]="mutualfundForm.mfund1">
-                        &nbsp; <label class="control-label " for="mfund1">Mutual Fund 1</label> 
-                    </div>
-                    <div>
-                        <input id="Checkbox1" name="Checkbox1" type="checkbox" value="Admin" />
-                        &nbsp; <label for="Checkbox1">AdminUser</label>
-                    </div>
-                </div>
-            </form>
+            <form *ngIf="companies" [formGroup]="mutualFundCompForm" (ngSubmit)="compareMCompanies()">
+                <label formArrayName="companies" *ngFor="let company of mutualFundCompForm.controls.companies.controls; let i = index">
+                  <input type="checkbox" [formControlName]="i" value="{{companies[i].symbol}}">
+                  {{companies[i].companyName}}
+                </label>
+              
+                <div *ngIf="!mutualFundCompForm.valid">At least one order must be selected</div>
+                <br>
+                <button [disabled]="!mutualFundCompForm.valid">submit</button>
+              </form>              
           </li>
       </ul>
   </nav>

@@ -9,7 +9,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpErrorHandler }     from './http-error-handler.service';
 import { MessageService }       from './message.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlotlyModule } from 'angular-plotly.js';
 
 import { AppComponent } from './app.component';
@@ -33,6 +33,7 @@ import { SidebarDirective } from './sidebar.directive';
     PlotlyModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),

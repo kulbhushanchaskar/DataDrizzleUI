@@ -1,6 +1,7 @@
-import { Component, OnInit,ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef, Input} from '@angular/core';
 import { MutualFundService } from './mutual-fund.service';
 import { IResponse } from '../IResponse.';
+import { AppComponent } from './../app.component';
 
 declare const Plotly;
 
@@ -14,21 +15,33 @@ export class MutualFundComponent implements OnInit {
 
   public response: IResponse;
   public layout: any;
+  @Input() mutualFundComp: AppComponent;
 
-  constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef) { }
+  constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef) { 
 
-  ngOnInit() {
-    this.response = {httpStatus: null, message: null, data:null, defaultErrorMsg: null };
-    let companyNameList: string[] = ["AAAAX","AAADX","AAAGX"];
-    this.mutualFundService.getMutualFundIndexes(companyNameList).subscribe(response => this.createChart(response));
+    this.mutualFundService.cartData.subscribe(
+      (companyNameList: string[]) => {
+        this.prepareChart(companyNameList);
+      });
+
   }
 
-  createChart(response: IResponse) {
+  ngOnInit() {
+    //this.response = {httpStatus: null, message: null, data:null, defaultErrorMsg: null };
+    let companyNameList: string[] = ["AAAAX","AAADX","AAAGX"];
+  }
+  
+  prepareChart(companyNameList: string[]) {
+    this.mutualFundService.getMutualFundIndexes(companyNameList).subscribe(response => this.drawChart(response));
+  }
+
+  drawChart(response: IResponse) {
     this.response = response;
     console.log(response);
     this.layout = {barmode: 'group'};
     this.cd.detectChanges();
     //Plotly.newPlot('myDiv', response.data, layout);
+    //this.mutualFundComp.testMethod();
 
     }
 
