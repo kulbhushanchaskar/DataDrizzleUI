@@ -16,20 +16,13 @@ export class AppComponent implements OnInit {
   @ViewChild(MutualFundComponent) mutualFundComp: MutualFundComponent;
 
   mutualFundCompForm: FormGroup;
-  orders = [
-    { id: 100, name: 'order 1' },
-    { id: 200, name: 'order 2' },
-    { id: 300, name: 'order 3' },
-    { id: 400, name: 'order 4' }
-  ];
-
   companies: any;
 
   constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef, private fb: FormBuilder) { }
 
 ngOnInit() {
-  this.mutualFundService.getMutualFundCompanies()
-  .subscribe(response => this.renderMutualFundCompanyChkBox(response));
+  // this.mutualFundService.getMutualFundCompanies()
+  // .subscribe(response => this.renderMutualFundCompanyChkBox(response));
 }
 
 renderMutualFundCompanyChkBox(response) {
@@ -39,7 +32,6 @@ renderMutualFundCompanyChkBox(response) {
     companies: new FormArray(controls)
   });
   console.log(response);
-  console.log(this.orders);
 }
 
 compareMCompanies() {

@@ -18,6 +18,8 @@ import { StockAndIndexPriceComponent } from './stock-and-index-price/stock-and-i
 import { MutualFundComponent } from './mutual-fund/mutual-fund.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarDirective } from './sidebar.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { SidebarDirective } from './sidebar.directive';
        path: 'mutual-fund',
        component: MutualFundComponent
      }
-   ])
+   ]),
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [HttpErrorHandler, MessageService,],
   bootstrap: [AppComponent]

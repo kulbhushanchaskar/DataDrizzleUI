@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<!-- <nav class="navbar navbar-default">
   <div class="container-fluid">
       <div class="navbar-header">
           <a class="navbar-brand">
@@ -11,10 +11,10 @@
             Link <span class="sr-only">(current)</span>
           </a></li>
           <li><a href="#">Link</a></li>
-          <li class="dropdown" dropdown> <!-- {1} -->
-              <a dropdownToggle role="button"> <!-- {2} -->
+          <li class="dropdown" dropdown> 
+              <a dropdownToggle role="button"> 
                 Dropdown <span class="caret"></span></a>
-              <ul *dropdownMenu class="dropdown-menu"> <!-- {3} -->
+              <ul *dropdownMenu class="dropdown-menu"> 
                   <li><a routerLink = "create-connection">Create Connection</a></li>
                   <li><a routerLink="stock-and-index-price">Stock and Index Price</a></li>
                   <li><a routerLink="mutual-fund">Mutual fund</a></li>
@@ -26,12 +26,22 @@
           </li>
       </ul>
   </div>
-</nav>
+</nav> -->
 
-<div id="wrapper"  [ngClass]="ref.click === true? 'toggled' :''" >
+<h3>Basic Buttons</h3>
+<div class="button-row">
+  <button mat-button>Basic</button>
+  <button mat-button color="primary">Primary</button>
+  <button mat-button color="accent">Accent</button>
+  <button mat-button color="warn">Warn</button>
+  <button mat-button disabled>Disabled</button>
+  <a mat-button routerLink=".">Link</a>
+</div>
+
+<!-- <div id="wrapper"  [ngClass]="ref.click === true? 'toggled' :''" >
   <div class="overlay" [ngStyle]="{disply:ref.click === true? 'block' :'none'}" ></div>
 
-  <!-- Sidebar -->
+  
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
       <ul class="nav sidebar-nav">
           <li class="sidebar-brand">
@@ -53,9 +63,9 @@
           </li>
       </ul>
   </nav>
-  <!-- /#sidebar-wrapper -->
+  
 
-  <!-- Page Content -->
+  
   <div id="page-content-wrapper">
       <button appSidebar  #ref="appSidebar" type="button" class="hamburger is-closed" data-toggle="offcanvas">
           <span class="hamb-top"></span>
@@ -70,7 +80,6 @@
           </div>
       </div>
   </div>
-  <!-- /#page-content-wrapper -->
+  
 
-</div>
-
+</div> -->
