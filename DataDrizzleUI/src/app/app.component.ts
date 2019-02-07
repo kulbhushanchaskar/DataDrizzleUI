@@ -13,38 +13,38 @@ import { MutualFundComponent } from './mutual-fund/mutual-fund.component';
 export class AppComponent implements OnInit {
   title = 'angular-bootstrap-example';
   //@Input() mutualFundComp: MutualFundComponent;
-  @ViewChild(MutualFundComponent) mutualFundComp: MutualFundComponent;
+  //@ViewChild(MutualFundComponent) mutualFundComp: MutualFundComponent;
 
   mutualFundCompForm: FormGroup;
   companies: any;
 
   constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef, private fb: FormBuilder) { }
 
-ngOnInit() {
-  // this.mutualFundService.getMutualFundCompanies()
-  // .subscribe(response => this.renderMutualFundCompanyChkBox(response));
-}
+  ngOnInit() {
+    this.mutualFundService.getMutualFundCompanies()
+      .subscribe(response => this.renderMutualFundCompanyChkBox(response));
+  }
 
-renderMutualFundCompanyChkBox(response) {
-  this.companies = response.data;
-  const controls = this.companies.map(c => new FormControl(false));
-  this.mutualFundCompForm = this.fb.group({
-    companies: new FormArray(controls)
-  });
-  console.log(response);
-}
+  renderMutualFundCompanyChkBox(response) {
+    this.companies = response.data;
+    const controls = this.companies.map(c => new FormControl(false));
+    this.mutualFundCompForm = this.fb.group({
+      companies: new FormArray(controls)
+    });
+    console.log(response);
+  }
 
-compareMCompanies() {
-  const companySymbols = this.mutualFundCompForm.value.companies
+  compareMCompanies() {
+    const companySymbols = this.mutualFundCompForm.value.companies
       .map((v, i) => v ? this.companies[i].symbol : null)
       .filter(v => v !== null);
 
-      //this.mutualFundComp.prepareChart(companySymbols);
-      this.mutualFundService.cartData.emit(companySymbols);
-}
+    //this.mutualFundComp.prepareChart(companySymbols);
+    this.mutualFundService.cartData.emit(companySymbols);
+  }
 
-testMethod() {
-  alert('callerd');
-}
-  
+  testMethod() {
+    alert('callerd');
+  }
+
 }
