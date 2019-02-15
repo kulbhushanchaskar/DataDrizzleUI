@@ -305,3 +305,11 @@ html { height: 100%;}
   .drawer-content {
       padding-left: 2%;
   }
+
+  .customSideBarCSS {
+    height: 92%;
+  }
+
+  .customSideBarFont {
+    font-weight: 400;
+  }

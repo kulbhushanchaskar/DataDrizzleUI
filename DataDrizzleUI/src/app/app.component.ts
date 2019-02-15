@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, Input, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { MutualFundService } from './mutual-fund/mutual-fund.service';
 import { IResponse } from './IResponse.';
 import { MutualFundComponent } from './mutual-fund/mutual-fund.component';
@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
 
   mutualFundCompForm: FormGroup;
   companies: any;
+  form: FormGroup;
+  mainPageSideBarOpend: boolean;
 
   constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef, private fb: FormBuilder) { }
 
@@ -27,17 +29,31 @@ export class AppComponent implements OnInit {
 
   renderMutualFundCompanyChkBox(response) {
     this.companies = response.data;
-    const controls = this.companies.map(c => new FormControl(false));
-    this.mutualFundCompForm = this.fb.group({
-      companies: new FormArray(controls)
+    let checkboxGroup = new FormArray(this.companies.map(item => new FormGroup({
+      //id: new FormControl(item.key),
+      text: new FormControl(item.companyName),
+      symbol: new FormControl(item.symbol),
+      checkbox: new FormControl(false)
+    })));
+
+    // create a hidden reuired formControl to keep status of checkbox group
+    let hiddenControl = new FormControl(this.mapItems(checkboxGroup.value), Validators.required);
+    // update checkbox group's value to hidden formcontrol
+    checkboxGroup.valueChanges.subscribe((v) => {
+      console.log(v);
+      hiddenControl.setValue(this.mapItems(v));
     });
-    console.log(response);
+
+    this.form = new FormGroup({
+      items: checkboxGroup,
+      selectedItems: hiddenControl
+    });
+
+    this.mainPageSideBarOpend = true;
   }
 
   compareMCompanies() {
-    const companySymbols = this.mutualFundCompForm.value.companies
-      .map((v, i) => v ? this.companies[i].symbol : null)
-      .filter(v => v !== null);
+    const companySymbols = this.form.value.items.filter((item) => item.checkbox).map(item => item.symbol);
 
     //this.mutualFundComp.prepareChart(companySymbols);
     this.mutualFundService.cartData.emit(companySymbols);
@@ -45,6 +61,11 @@ export class AppComponent implements OnInit {
 
   testMethod() {
     alert('callerd');
+  }
+
+  mapItems(items) {
+    let selectedItems = items.filter((item) => item.checkbox).map((item) => item.symbol);
+    return selectedItems.length ? selectedItems : null;
   }
 
 }

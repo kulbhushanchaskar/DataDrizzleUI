@@ -27,8 +27,7 @@ export class MutualFundComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.response = {httpStatus: null, message: null, data:null, defaultErrorMsg: null };
-    let companyNameList: string[] = ["AAAAX","AAADX","AAAGX"];
+    
   }
   
   prepareChart(companyNameList: string[]) {
@@ -40,9 +39,6 @@ export class MutualFundComponent implements OnInit {
     console.log(response);
     this.layout = {barmode: 'group'};
     this.cd.detectChanges();
-    //Plotly.newPlot('myDiv', response.data, layout);
-    //this.mutualFundComp.testMethod();
-
     }
 
 
