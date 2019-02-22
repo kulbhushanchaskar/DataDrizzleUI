@@ -21,11 +21,22 @@ export class MutualFundService {
   appUrl = 'http://localhost:8090//mutualfund';  // URL to web api
   private handleError: HandleError;
   cartData = new EventEmitter<any>();
+  private mutualFundCompaniesLstEvent = new EventEmitter<string[]>();
 
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError('MutualFundService');
+  }
+
+  getMutualFundCompaniesLstEvent() : EventEmitter<string[]>{
+    return this.mutualFundCompaniesLstEvent;
+  }
+
+  broadCastMutualFundCompaniesLst() {
+    this.getMutualFundCompanies().subscribe(response => {
+      this.mutualFundCompaniesLstEvent.emit(response.data);
+    });
   }
 
   getMutualFundIndexes(companyNames: string[]) : Observable<IResponse> {

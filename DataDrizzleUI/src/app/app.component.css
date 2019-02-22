@@ -303,7 +303,7 @@ html { height: 100%;}
   }
 
   .drawer-content {
-      padding-left: 2%;
+      padding-left: 10%;
   }
 
   .customSideBarCSS {
@@ -313,3 +313,11 @@ html { height: 100%;}
   .customSideBarFont {
     font-weight: 400;
   }
+
+  .sidebar-fixed-bottom {
+    margin: 0 auto;
+    width: 20%;
+    position: sticky;
+
+    background-color: red;
+}

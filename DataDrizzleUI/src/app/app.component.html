@@ -31,31 +31,29 @@
 </nav>
 
 <mat-drawer-container class="main-page-drawer customSideBarCSS">
-    <mat-drawer style="width: 20%" #mainSidenDrawer mode="side" [(opened)]="mainPageSideBarOpend" class="drawer-content">
-        Mutual Fund Companies
-        <div *ngIf="companies" style="">
+    <mat-drawer style="width: 20%" #mainSidenDrawer mode="side" [(opened)]="mainPageSideBarOpend">
+        <div *ngIf="mutualFundCompanies" style="">
+            Mutual Fund Companies
             <form [formGroup]="form" (ngSubmit)="compareMCompanies()">
+                <div style="width: 100%" class="drawer-content">
                 <div [formArrayName]="'items'" [class.invalid]="!form.controls.selectedItems.valid">
                   <div *ngFor="let control of form.controls.items.controls; let i = index;" [formGroup]="control">
                     <input type="checkbox" formControlName="checkbox" id="i" value="control.controls.symbol.value">
                     <label class="ellipsis customSideBarFont" attr.for="{{i}}">
                       <span tooltip="{{control.controls.text.value}}" >&nbsp; {{ (control.controls.text.value.length>21)? (control.controls.text.value | slice:0:21)+'..':(control.controls.text.value) }}</span>
                     </label>
-
-                    <!-- <div class="ellipsis" style="z-index: 100%;">
-                        
-                        </div> -->
-
                   </div>
                 </div>
+                <br />
+              </div>
                 <div *ngIf="!form.controls.selectedItems.valid && form.controls.items.touched">
                   checkbox group is required!
                 </div>
-                <div>
-                    <button [disabled]="!form.controls.selectedItems.valid">submit</button>
-                </div>
-                <!-- <hr>
-                <pre>{{form.controls.selectedItems.value | json}}</pre> -->
+                <div style="width: 100%; bottom: 0; height: 100%; position: sticky; background-color:#ddd;">
+                  <div class="sidebar-fixed-bottom">
+                      <button [disabled]="!form.controls.selectedItems.valid">submit</button>
+                  </div>
+              </div>
             </form>
         </div>
     </mat-drawer>

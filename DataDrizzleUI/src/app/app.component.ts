@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, Validators
 import { MutualFundService } from './mutual-fund/mutual-fund.service';
 import { IResponse } from './IResponse.';
 import { MutualFundComponent } from './mutual-fund/mutual-fund.component';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -16,21 +17,40 @@ export class AppComponent implements OnInit {
   //@ViewChild(MutualFundComponent) mutualFundComp: MutualFundComponent;
 
   mutualFundCompForm: FormGroup;
-  companies: any;
+  mutualFundCompanies: any;
   form: FormGroup;
   mainPageSideBarOpend: boolean;
 
-  constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef, private fb: FormBuilder) { }
+  constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef, private fb: FormBuilder, private sharedService: SharedService) { 
 
-  ngOnInit() {
-    this.mutualFundService.getMutualFundCompanies()
-      .subscribe(response => this.renderMutualFundCompanyChkBox(response));
+    this.mutualFundService.getMutualFundCompaniesLstEvent().subscribe(companyList => {
+      this.renderMutualFundCompanyChkBox(companyList);
+    });
+
+    this.sharedService.getCurrentComponentNotifier().subscribe(componentName => this.resetSideBarValues(componentName));
+
   }
 
-  renderMutualFundCompanyChkBox(response) {
-    this.companies = response.data;
-    let checkboxGroup = new FormArray(this.companies.map(item => new FormGroup({
-      //id: new FormControl(item.key),
+  ngOnInit() {
+    
+  }
+
+  resetSideBarValues(componentName: string) {
+    switch(componentName) {
+      case "mutual-fund":
+      break;
+      case "create-connection":
+        this.mutualFundCompanies = null;
+      break;
+      case "stock-and-index-price":
+        this.mutualFundCompanies = null;
+      break;
+    }
+  }
+
+  renderMutualFundCompanyChkBox(companyList) {
+    this.mutualFundCompanies = companyList;
+    let checkboxGroup = new FormArray(this.mutualFundCompanies.map(item => new FormGroup({
       text: new FormControl(item.companyName),
       symbol: new FormControl(item.symbol),
       checkbox: new FormControl(false)
@@ -40,7 +60,8 @@ export class AppComponent implements OnInit {
     let hiddenControl = new FormControl(this.mapItems(checkboxGroup.value), Validators.required);
     // update checkbox group's value to hidden formcontrol
     checkboxGroup.valueChanges.subscribe((v) => {
-      console.log(v);
+      //console.log(v);
+      console.log(this.mapItems(v));
       hiddenControl.setValue(this.mapItems(v));
     });
 
@@ -54,8 +75,6 @@ export class AppComponent implements OnInit {
 
   compareMCompanies() {
     const companySymbols = this.form.value.items.filter((item) => item.checkbox).map(item => item.symbol);
-
-    //this.mutualFundComp.prepareChart(companySymbols);
     this.mutualFundService.cartData.emit(companySymbols);
   }
 

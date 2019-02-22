@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Connection } from './connection';
 import { ConnectionService } from './connection.service';
 import { IResponse } from '../IResponse.';
+import { SharedService } from './../shared.service';
 
 declare const Plotly
 
@@ -12,9 +13,10 @@ declare const Plotly
 })
 export class CreateConnectionComponent implements OnInit {
   response: IResponse;
-  constructor(private connectionService: ConnectionService) { }
+  constructor(private connectionService: ConnectionService, private sharedService: SharedService) { }
 
   ngOnInit() {
+    this.sharedService.broadCastCurrentCoponent("create-connection");
   }
 
   createConnetion(connection) {

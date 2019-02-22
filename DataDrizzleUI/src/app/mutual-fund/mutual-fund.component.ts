@@ -2,6 +2,7 @@ import { Component, OnInit,ChangeDetectorRef, Input} from '@angular/core';
 import { MutualFundService } from './mutual-fund.service';
 import { IResponse } from '../IResponse.';
 import { AppComponent } from './../app.component';
+import { SharedService } from './../shared.service';
 
 declare const Plotly;
 
@@ -17,17 +18,19 @@ export class MutualFundComponent implements OnInit {
   public layout: any;
   @Input() mutualFundComp: AppComponent;
 
-  constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef) { 
+  constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef, private sharedService: SharedService) { 
 
     this.mutualFundService.cartData.subscribe(
       (companyNameList: string[]) => {
         this.prepareChart(companyNameList);
       });
 
+      
   }
 
   ngOnInit() {
-    
+    this.mutualFundService.broadCastMutualFundCompaniesLst();
+    this.sharedService.broadCastCurrentCoponent("mutual-fund");
   }
   
   prepareChart(companyNameList: string[]) {
