@@ -20,6 +20,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarDirective } from './sidebar.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DataDrizzleHttpInterceptor } from './interceptor/data-drizzle-http-interceptor';
+import { DataDrizzleHttpRespInterceptor } from './interceptor/data-dirzzle-http-resp-interceptor';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,16 @@ import { MaterialModule } from './material';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [HttpErrorHandler, MessageService,],
+  providers: [HttpErrorHandler, MessageService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: DataDrizzleHttpInterceptor,
+    multi: true
+  },{
+    provide: HTTP_INTERCEPTORS,
+    useClass: DataDrizzleHttpRespInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

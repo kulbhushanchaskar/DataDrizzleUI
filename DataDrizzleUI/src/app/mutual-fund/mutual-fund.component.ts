@@ -16,6 +16,7 @@ export class MutualFundComponent implements OnInit {
 
   public response: IResponse;
   public layout: any;
+  isLoadingResponse : boolean;
   @Input() mutualFundComp: AppComponent;
 
   constructor(private mutualFundService: MutualFundService, private cd: ChangeDetectorRef, private sharedService: SharedService) { 
@@ -25,7 +26,10 @@ export class MutualFundComponent implements OnInit {
         this.prepareChart(companyNameList);
       });
 
-      
+      this.sharedService.getDataDrizzleRequestRespNotifier().subscribe(
+        (isLoadingResponse) => {
+           this.isLoadingResponse = isLoadingResponse; 
+        });
   }
 
   ngOnInit() {

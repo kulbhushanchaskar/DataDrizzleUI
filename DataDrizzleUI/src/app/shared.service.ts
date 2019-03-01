@@ -5,6 +5,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 })
 export class SharedService {
   private currentCoponentNotifier = new EventEmitter<string>();
+  private isLoadingResponseNotifier = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -14,6 +15,10 @@ export class SharedService {
 
   broadCastCurrentCoponent(componentName: string) {
     this.currentCoponentNotifier.emit(componentName);
+  }
+
+  getDataDrizzleRequestRespNotifier() {
+    return this.isLoadingResponseNotifier;
   }
 
 }

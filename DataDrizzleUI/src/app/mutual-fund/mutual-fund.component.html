@@ -1,3 +1,6 @@
+<div *ngIf="isLoadingResponse">
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
 <plotly-plot *ngIf="response" [data]="response.data" [layout]="layout">
 
 </plotly-plot>
