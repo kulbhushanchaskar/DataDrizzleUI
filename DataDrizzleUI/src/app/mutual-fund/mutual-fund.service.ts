@@ -18,14 +18,14 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MutualFundService {
-  appUrl = 'http://localhost:8090//mutualfund';  // URL to web api
+  appUrl = 'http://localhost:8090/mutualfund';  // URL to web api
   private handleError: HandleError;
   cartData = new EventEmitter<any>();
   private mutualFundCompaniesLstEvent = new EventEmitter<string[]>();
 
   constructor(
     private http: HttpClient,
-    httpErrorHandler: HttpErrorHandler) {
+    private httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError('MutualFundService');
   }
 

@@ -1,8 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { MutualFundService } from './mutual-fund/mutual-fund.service';
-import { IResponse } from './IResponse.';
-import { MutualFundComponent } from './mutual-fund/mutual-fund.component';
 import { SharedService } from './shared.service';
 
 @Component({

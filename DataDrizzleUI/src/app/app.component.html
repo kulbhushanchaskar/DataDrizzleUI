@@ -40,7 +40,9 @@
                   <div *ngFor="let control of form.controls.items.controls; let i = index;" [formGroup]="control">
                     <input type="checkbox" formControlName="checkbox" id="i" value="control.controls.symbol.value">
                     <label class="ellipsis customSideBarFont" attr.for="{{i}}">
-                      <span tooltip="{{control.controls.text.value}}" >&nbsp; {{ (control.controls.text.value.length>21)? (control.controls.text.value | slice:0:21)+'..':(control.controls.text.value) }}</span>
+                      <span tooltip="{{control.controls.text.value}}" >
+                        &nbsp; <a [routerLink]="['/mutual-fund-history',control.controls.symbol.value]">{{ (control.controls.text.value.length>21)? (control.controls.text.value | slice:0:21)+'..':(control.controls.text.value) }}</a>
+                      </span>
                     </label>
                   </div>
                 </div>

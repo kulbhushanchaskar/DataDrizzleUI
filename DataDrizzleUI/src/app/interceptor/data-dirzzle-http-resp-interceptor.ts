@@ -26,5 +26,3 @@ export class DataDrizzleHttpRespInterceptor implements HttpInterceptor {
         }
 
     }
-
-}

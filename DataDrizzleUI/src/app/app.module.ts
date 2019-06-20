@@ -23,6 +23,7 @@ import { MaterialModule } from './material';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DataDrizzleHttpInterceptor } from './interceptor/data-drizzle-http-interceptor';
 import { DataDrizzleHttpRespInterceptor } from './interceptor/data-dirzzle-http-resp-interceptor';
+import { MutualFundHistoryComponent } from './mutual-fund-history/mutual-fund-history.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DataDrizzleHttpRespInterceptor } from './interceptor/data-dirzzle-http-
     StockAndIndexPriceComponent,
     MutualFundComponent,
     NavbarComponent,
-    SidebarDirective
+    SidebarDirective,
+    MutualFundHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,10 @@ import { DataDrizzleHttpRespInterceptor } from './interceptor/data-dirzzle-http-
      {
        path: 'mutual-fund',
        component: MutualFundComponent
+     },
+     {
+       path:'mutual-fund-history/:symbol',
+       component:MutualFundHistoryComponent
      }
    ]),
     BrowserAnimationsModule,
