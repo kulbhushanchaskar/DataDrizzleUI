@@ -38,10 +38,10 @@ export class AppComponent implements OnInit {
       case "mutual-fund":
       break;
       case "create-connection":
-        this.mutualFundCompanies = null;
+        this.mutualFundCompanies = undefined;
       break;
       case "stock-and-index-price":
-        this.mutualFundCompanies = null;
+        this.mutualFundCompanies = undefined;
       break;
     }
   }

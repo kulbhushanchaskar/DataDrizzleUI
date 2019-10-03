@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Connection } from './connection';
 import { ConnectionService } from './connection.service';
-import { IResponse } from '../IResponse.';
+import { IResponse } from '../i.response';
 import { SharedService } from './../shared.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 declare const Plotly
 
@@ -12,11 +13,26 @@ declare const Plotly
   styleUrls: ['./create-connection.component.css']
 })
 export class CreateConnectionComponent implements OnInit {
-  response: IResponse;
+  response: IResponse<string[]>;
+  istestConnectionSuccessful: boolean = false;
+  tables: string[] = [];
+  formdata: FormGroup;
+  //connection: NgForm;
   constructor(private connectionService: ConnectionService, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.sharedService.broadCastCurrentCoponent("create-connection");
+
+    //this.connection.get('country').setValue(this.CountryResponse);
+
+    this.formdata = new FormGroup({
+      connectionName: new FormControl("aaaa"),
+      databaseName: new FormControl("world"),
+      username: new FormControl("root"),
+      pwd: new FormControl("root"),
+      host: new FormControl("localhost"),
+      port: new FormControl("3306"),
+   });
   }
 
   createConnetion(connection) {
@@ -24,12 +40,34 @@ export class CreateConnectionComponent implements OnInit {
     .subscribe(response => this.printData(response));
  }
 
-  printData(response: IResponse) {
-    console.log(response.data);
-    let traces = new Array();
-    let layout = {barmode: 'group'};
-    
-    Plotly.newPlot('myDiv', response.data, layout);
+ testConnection(connection) {
+  this.connectionService.testConnection(connection)
+  .subscribe(response =>  this.populateTable(response));
+ }
+
+ populateTable(response: IResponse<string[]>) {
+  if(response.notifications.errors.length > 0) {
+    this.istestConnectionSuccessful = false;
+    console.error(response.notifications.errors);
+  } else {
+    this.istestConnectionSuccessful = true;
+    this.tables = response.data;
+  }
+ }
+
+  printData(response: IResponse<string[]>) {
+    console.log(response);
+    if(response.notifications.errors.length > 0) {
+      console.error(response.notifications.errors);
+    } 
+    if(response.notifications.success.length > 0) {
+      console.log(response.notifications.success);
+      this.istestConnectionSuccessful = true;
+    }
+    if(response.notifications.warnings.length > 0) {
+      console.log(response.notifications.warnings);
+    }
+    //response.notifi
 
   }
 

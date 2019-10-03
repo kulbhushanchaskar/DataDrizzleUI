@@ -1,70 +1,63 @@
-<div class="container">
+<div class = "container">
     <h2>Create New Connection</h2>
     <br />
-    <form class="form-horizontal" #connection = "ngForm" (ngSubmit) = "createConnetion(connection.value)">
-      <!--Connection name-->
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="connectionName">Connection Name:</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" id="connectionName" placeholder="Enter Connection Name" name="connectionName" [(ngModel)]="connection.connectionName">
-        </div>
-      </div>
 
-      <!--database type-->
-      <div class="form-group">          
-          <label class="control-label col-sm-2" for="databaseType">Database Type:</label>
+    <form [formGroup]="formdata" class="col-12">
+
+        <div class="col-md-12 form-group form-inline">
+            <label class="col-sm-2 col-form-label"  for="name">Name</label>
+            <input type="text" id="name" class="form-control" name="name" id="name" />
+       </div>
+
+        <!-- <div class="col-md-12 form-group form-inline">
+          <label class="col-form-label col-sm-2" for="connectionName">Connection Name:</label>
+          <input type="text" class="form-control col-sm-10" id="connectionName" placeholder="Enter Connection Name" name="connectionName" formControlName="connectionName">
+        </div> -->
+        
+        <!-- <div class="form-group">
+          <label class="control-label" for="databaseName">Database name:</label>
+          <div class="">
+            <input type="text" class="form-control" id="databaseName" placeholder="Enter Database Name" name="databaseName" formControlName="databaseName">
+          </div>
+        </div> -->
+
+        <!-- <div>
+          <label class="control-label col-sm-2" for="username">User Name:</label>
           <div class="col-sm-5">
-          <select class="form-control" id="databaseType" name="databaseType" [(ngModel)]="connection.databaseType">
-            <option>MySQL</option>
-            <option>Oracle</option>
-            <option>MongoDB</option>
-            <option>Hive</option>
-            <option>Amazon-aws</option>
-          </select>
+            <input type="text" class="form-control" id="username" placeholder="Enter User Name" name="username" formControlName="username">
           </div>
         </div>
-  
-        <!-- user name -->
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="username">Username Name:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username" [(ngModel)]="connection.username">
-          </div>
-        </div>
-  
-        <!--password-->
-        <div class="form-group">
+
+        <div>
           <label class="control-label col-sm-2" for="pwd">Password:</label>
-          <div class="col-sm-5">          
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" [(ngModel)]="connection.pwd">
+          <div class="col-sm-5">
+            <input type="password" class="form-control" id="pwd" placeholder="Enter Password Name" name="pwd" formControlName="pwd">
           </div>
         </div>
-  
-        <!--server url-->
-        <div class="form-group">
+
+        <div>
           <label class="control-label col-sm-2" for="host">Host:</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" id="host" placeholder="Enter Host ip or Host name" name="host" [(ngModel)]="connection.host">
+            <input type="text" class="form-control" id="host" placeholder="Enter Host Name/URL" name="connectionName" formControlName="host">
           </div>
         </div>
+
+          <div>
+            <label class="control-label col-sm-2" for="port">Port:</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="port" placeholder="Enter Port Number" name="port" formControlName="port">
+            </div>
+          </div>
+
+          <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-default" (click)="testConnection(connection)">Next</button>
+          </div> -->
+
+     </form>
+</div>  
   
-        <!--database name-->
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="databaseName">Database name:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="databaseName" placeholder="Ener Database Name" name="databaseName" [(ngModel)]="connection.databaseName">
-          </div>
-        </div>
 
-      <div class="form-group">        
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default">Submit</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <br/>
+  <!-- <br/>
   <div style="display: block;  margin-left: auto;  margin-right: auto;  width: 50%;" id="myDiv">
 
-  </div>
+  </div> -->
