@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IResponse } from '../IResponse.';
+import { IResponse } from '../i.response';
 import { catchError } from 'rxjs/operators';
 import { HandleError, HttpErrorHandler } from '../http-error-handler.service';
 
@@ -23,12 +23,12 @@ export class MutualFundHistoryService {
     this.handleError = httpErrorHandler.createHandleError('MutualFundHistoryService');
    }
 
-  getMutualFundHistory(symbol: string) {
-    const safeErrorMsg: IResponse = {httpStatus: null, message: null, data:null, defaultErrorMsg: "Technical difficulties" };
+  /*getMutualFundHistory(symbol: string) {
+    const safeErrorMsg: IResponse<String> = {httpStatus: null, message: any, data:null, defaultErrorMsg: "Technical difficulties" };
 
-    return this.http.post<IResponse>(this.appUrl + "/history", symbol, httpOptions)
+    return this.http.post<IResponse<String>>(this.appUrl + "/history", symbol, httpOptions)
           .pipe(
             catchError(this.handleError('getMutualFundHistory', safeErrorMsg))
           );
-  }
+  }*/
 }

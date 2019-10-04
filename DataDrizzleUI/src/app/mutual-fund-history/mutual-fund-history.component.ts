@@ -12,12 +12,12 @@ export class MutualFundHistoryComponent implements OnInit {
   constructor(private mutualFundHistory: MutualFundHistoryService , private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log("in init of MutualFundHistoryComponent");
-    this.route.params.subscribe((parameters) => this.getMutualFundHistoryPerformance(parameters['symbol']));
+    /*console.log("in init of MutualFundHistoryComponent");
+    this.route.params.subscribe((parameters) => this.getMutualFundHistoryPerformance(parameters['symbol']));*/
   }
 
-  private getMutualFundHistoryPerformance(symbol: string) {
+  /*private getMutualFundHistoryPerformance(symbol: string) {
     this.mutualFundHistory.getMutualFundHistory(symbol).subscribe(response => console.log(response) );
-  }
+  }*/
 
 }

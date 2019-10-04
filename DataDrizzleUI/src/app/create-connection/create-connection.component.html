@@ -2,58 +2,88 @@
     <h2>Create New Connection</h2>
     <br />
 
-    <form [formGroup]="formdata" class="col-12">
-
-        <div class="col-md-12 form-group form-inline">
-            <label class="col-sm-2 col-form-label"  for="name">Name</label>
-            <input type="text" id="name" class="form-control" name="name" id="name" />
-       </div>
-
-        <!-- <div class="col-md-12 form-group form-inline">
-          <label class="col-form-label col-sm-2" for="connectionName">Connection Name:</label>
-          <input type="text" class="form-control col-sm-10" id="connectionName" placeholder="Enter Connection Name" name="connectionName" formControlName="connectionName">
-        </div> -->
-        
-        <!-- <div class="form-group">
-          <label class="control-label" for="databaseName">Database name:</label>
-          <div class="">
-            <input type="text" class="form-control" id="databaseName" placeholder="Enter Database Name" name="databaseName" formControlName="databaseName">
-          </div>
-        </div> -->
-
-        <!-- <div>
-          <label class="control-label col-sm-2" for="username">User Name:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="username" placeholder="Enter User Name" name="username" formControlName="username">
-          </div>
+    <form [formGroup]="connection" class="form-horizontal">
+      
+      <div *ngIf="!istestConnectionSuccessful">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="connectionName">Connection Name:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="connectionName" placeholder="Enter Connection Name" name="connectionName" formControlName="connectionName">
         </div>
+      </div>
 
-        <div>
-          <label class="control-label col-sm-2" for="pwd">Password:</label>
-          <div class="col-sm-5">
-            <input type="password" class="form-control" id="pwd" placeholder="Enter Password Name" name="pwd" formControlName="pwd">
-          </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="databaseName">Database Name:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="databaseName" placeholder="Enter Database Name" name="databaseName" formControlName="databaseName">
         </div>
+      </div>
 
-        <div>
-          <label class="control-label col-sm-2" for="host">Host:</label>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" id="host" placeholder="Enter Host Name/URL" name="connectionName" formControlName="host">
-          </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="databaseType">Database Type:</label>
+        <div class="col-sm-5">
+            <select class="form-control" id="databaseType" name="databaseType" formControlName="databaseType">
+                <option>MySQL</option>
+                <option>Oracle</option>
+                <option>SQL Server</option>
+              </select>
         </div>
+      </div>
 
-          <div>
-            <label class="control-label col-sm-2" for="port">Port:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="port" placeholder="Enter Port Number" name="port" formControlName="port">
-            </div>
-          </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="username">User Name:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="username" placeholder="Enter User Name" name="username" formControlName="username">
+        </div>
+      </div>
 
-          <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-default" (click)="testConnection(connection)">Next</button>
-          </div> -->
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Password:</label>
+        <div class="col-sm-5">
+          <input type="password" class="form-control" id="pwd" placeholder="Enter Password Name" name="pwd" formControlName="pwd">
+        </div>
+      </div>
 
-     </form>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="host">Host:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="host" placeholder="Enter Host Name/URL" name="connectionName" formControlName="host">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="port">Port:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="port" placeholder="Enter Port Number" name="port" formControlName="port">
+        </div>
+      </div>
+
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+          <button class="btn btn-default" (click)="testConnection(connection)">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="istestConnectionSuccessful">
+      <div>
+        Please select tables to be archived
+      </div>
+      <li *ngFor="let table of tables">
+          {{ table }}
+      </li>
+
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+          <button class="btn btn-default" (click)="testConnection(connection)">Finish</button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
 </div>  
   
 

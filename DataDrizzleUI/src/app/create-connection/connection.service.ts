@@ -72,15 +72,15 @@ export class ConnectionService {
     let appUrl = 'http://localhost:8090/test/connection'; 
 
     let connectionMap = new Map<string,string>();
-    connectionMap.set("connectionName",connection.connectionName);
-    connectionMap.set("connectionDatabaseType",connection.databaseType);
+    connectionMap.set("connectionName",connection.connectionName.value);
+    connectionMap.set("connectionDatabaseType",connection.databaseType.value);
 
-    connectionMap.set("databaseName",connection.databaseName);
-    connectionMap.set("username",connection.username);
-    connectionMap.set("pwd",connection.pwd);
+    connectionMap.set("databaseName",connection.databaseName.value);
+    connectionMap.set("username",connection.username.value);
+    connectionMap.set("pwd",connection.pwd.value);
 
-    connectionMap.set("host",connection.host);
-    connectionMap.set("port",connection.port);
+    connectionMap.set("host",connection.host.value);
+    connectionMap.set("port",connection.port.value);
     console.log(connectionMap);
 
     let connectionParameters = new Map<string,Map<string,string>>();

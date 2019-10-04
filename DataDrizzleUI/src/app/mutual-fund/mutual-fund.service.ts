@@ -4,7 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
-import { IResponse } from '../IResponse.';
+import { IResponse } from '../i.response';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -33,29 +33,29 @@ export class MutualFundService {
     return this.mutualFundCompaniesLstEvent;
   }
 
-  broadCastMutualFundCompaniesLst() {
+  /*broadCastMutualFundCompaniesLst() {
     this.getMutualFundCompanies().subscribe(response => {
       this.mutualFundCompaniesLstEvent.emit(response.data);
     });
-  }
+  }*/
 
-  getMutualFundIndexes(companyNames: string[]) : Observable<IResponse> {
+  /*getMutualFundIndexes(companyNames: string[]) : Observable<IResponse<any>> {
 
-    const safeErrorMsg: IResponse = {httpStatus: null, message: null, data:null, defaultErrorMsg: "Technical difficulties" };
+    const safeErrorMsg: IResponse<any> = {httpStatus: null, message: null, data:null, defaultErrorMsg: "Technical difficulties" };
 
-    return this.http.post<IResponse>(this.appUrl, companyNames, httpOptions)
+    return this.http.post<IResponse<any>>(this.appUrl, companyNames, httpOptions)
       .pipe(
         catchError(this.handleError('getStockAndIndexPrice', safeErrorMsg))
       );
-  }
+  }*/
 
-  getMutualFundCompanies() : Observable<IResponse> {
+  /*getMutualFundCompanies() : Observable<IResponse> {
     const safeErrorMsg: IResponse = {httpStatus: null, message: null, data:null, defaultErrorMsg: "Technical difficulties" };
 
     return this.http.post<IResponse>(this.appUrl + "/getMutualFundSymbols", null, httpOptions)
           .pipe(
             catchError(this.handleError('getStockAndIndexPrice', safeErrorMsg))
           );
-  }
+  }*/
 
 }

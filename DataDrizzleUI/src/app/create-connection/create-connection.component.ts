@@ -17,7 +17,8 @@ export class CreateConnectionComponent implements OnInit {
   istestConnectionSuccessful: boolean = false;
   tables: string[] = [];
   formdata: FormGroup;
-  //connection: NgForm;
+  connection: FormGroup;
+  //connection: FormGroup;
   constructor(private connectionService: ConnectionService, private sharedService: SharedService) { }
 
   ngOnInit() {
@@ -25,9 +26,10 @@ export class CreateConnectionComponent implements OnInit {
 
     //this.connection.get('country').setValue(this.CountryResponse);
 
-    this.formdata = new FormGroup({
+    this.connection = new FormGroup({
       connectionName: new FormControl("aaaa"),
       databaseName: new FormControl("world"),
+      databaseType: new FormControl("MySQL"),
       username: new FormControl("root"),
       pwd: new FormControl("root"),
       host: new FormControl("localhost"),
@@ -41,7 +43,7 @@ export class CreateConnectionComponent implements OnInit {
  }
 
  testConnection(connection) {
-  this.connectionService.testConnection(connection)
+  this.connectionService.testConnection(connection.controls)
   .subscribe(response =>  this.populateTable(response));
  }
 
@@ -67,8 +69,6 @@ export class CreateConnectionComponent implements OnInit {
     if(response.notifications.warnings.length > 0) {
       console.log(response.notifications.warnings);
     }
-    //response.notifi
-
   }
 
 }
